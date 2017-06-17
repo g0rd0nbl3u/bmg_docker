@@ -2,30 +2,25 @@ version: "2"
 
 services:
 
-  idea_generator_service:
+  bmg_backend:
     image: g0rd0nbl3u/bmg_backend:latest
     container_name: bmg_backend
     environment:
       - DB_HOST=mongodb:27017
       - DB_NAME=business_model_idea_generator
-      - PORT=8080
+      - PORT=3000
     ports:
-      - "8090:8080"
+      - "3000:3000"
     networks:
       - back-tier
       - www-tier
     restart: always
 
-  evaluation_service:
+  bmg_frontend:
     image: g0rd0nbl3u/bmg_frontend:latest
     container_name: bmg_frontend
-    environment:
-      - IDEA_GENERATOR_API=http://bmg_backend:8080
-      - DB_HOST=mongodb:27017
-      - DB_NAME=business_model_idea_generator
-      - PORT=8080
     ports:
-      - "80:8080"
+      - "4200:80"
     networks:
       - back-tier
       - www-tier
