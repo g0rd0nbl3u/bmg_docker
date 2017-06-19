@@ -1,0 +1,45 @@
+version: "2"
+
+services:
+
+  bmg_backend:
+    image: g0rd0nbl3u/bmg_backend:v1.3
+    container_name: bmg_backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=mongodb:27017
+    networks:
+      - back-tier
+      - www-tier
+    expose:
+      - "3000"
+    restart: always
+
+  bmg_frontend:
+    image: g0rd0nbl3u/bmg_frontend:v1.2
+    container_name: bmg_frontend
+    ports:
+      - "8080:80"
+    environment:
+      - BACKEND=bmg_backend:3000
+    networks:
+      - back-tier
+      - www-tier
+    restart: always
+
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - back-tier
+    restart: always
+
+volumes:
+  mongodb-data:
+    driver: local
+
+networks:
+  back-tier:
+  www-tier:
