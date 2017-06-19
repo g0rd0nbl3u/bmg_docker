@@ -17,7 +17,7 @@ services:
     restart: always
 
   bmg_frontend:
-    image: g0rd0nbl3u/bmg_frontend:v1.2
+    image: g0rd0nbl3u/bmg_frontend:v1.4
     container_name: bmg_frontend
     ports:
       - "8080:80"
