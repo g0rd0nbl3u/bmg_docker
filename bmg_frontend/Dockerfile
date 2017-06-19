@@ -26,10 +26,15 @@ WORKDIR /app
 # Clone the conf files into the docker container
 RUN \
   cd /app && \
-  git clone https://github.com/g0rd0nbl3u/bmg_frontend.git && \
-  cd bmg_frontend/frontend && \
-  npm install
+  git clone https://github.com/g0rd0nbl3u/bmg_frontend.git
+RUN cd bmg_frontend/frontend
+WORKDIR /app/bmg_frontend/frontend
+RUN npm install
 
-RUN chown -R nginx:www-data /app/bmg_frontend/frontend
+RUN chown -R nginx:www-data /app/bmg_frontend/frontend/src
+RUN mkdir /run/nginx
 
 CMD ["/usr/bin/supervisord", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# EXPOSE 4200
+# CMD [ "npm", "start" ]

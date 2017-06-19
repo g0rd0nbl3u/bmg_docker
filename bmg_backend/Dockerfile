@@ -1,4 +1,4 @@
-FROM artworkad/alpine-node-nightly:latest
+FROM node:8.1.2-alpine
 
 MAINTAINER Florian Braun <florianbraun1712@gmail.com>
 
