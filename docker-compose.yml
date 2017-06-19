@@ -3,7 +3,7 @@ version: "2"
 services:
 
   bmg_backend:
-    image: g0rd0nbl3u/bmg_backend:v1.3
+    image: g0rd0nbl3u/bmg_backend:v1.4
     container_name: bmg_backend
     ports:
       - "3000:3000"

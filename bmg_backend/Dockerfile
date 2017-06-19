@@ -25,6 +25,7 @@ RUN \
   cd /app && \
   git clone https://github.com/g0rd0nbl3u/bmg_backend.git && \
   cd bmg_backend && \
-  npm install
+  npm install && \
+  mkdir uploads
 
 CMD ["/usr/bin/supervisord", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
